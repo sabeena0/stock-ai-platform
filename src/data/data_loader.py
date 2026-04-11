@@ -5,6 +5,7 @@ def download_stock_data(ticker, start="2018-01-01"):
     data=yf.download(ticker,start=start)
     data.reset_index(inplace=True)
     return data
+    
 if __name__=="__main__":
     ticker=input("input stock ticker").upper()
     df=download_stock_data(ticker)
