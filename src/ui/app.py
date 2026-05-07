@@ -32,36 +32,36 @@ if st.button("Predict"):
         # Convert response to JSON
         data = response.json()
 
-# Check if backend returned error
-if "error" in data:
+        # Check if backend returned error
+        if "error" in data:
 
-    st.error(data["error"])
+            st.error(data["error"])
 
-else:
+        else:
 
-    st.subheader(f"Prediction for {data['ticker']}")
+            st.subheader(f"Prediction for {data['ticker']}")
 
-    if "UP" in data["prediction"]:
-        st.success(data["prediction"])
-    else:
-        st.error(data["prediction"])
+            if "UP" in data["prediction"]:
+                st.success(data["prediction"])
+            else:
+                st.error(data["prediction"])
 
-    st.subheader("🤖 AI Explanation")
+            st.subheader("🤖 AI Explanation")
 
-    st.info(data["explanation"])
+            st.info(data["explanation"])
 
-    # Load stock CSV
-    df = pd.read_csv(f"data/{ticker}_stock_data.csv")
+            # Load stock CSV
+            df = pd.read_csv(f"data/{ticker}_stock_data.csv")
 
-    # Plot chart
-    fig = px.line(
-        df,
-        x="Date",
-        y="Close",
-        title=f"{ticker.upper()} Stock Price"
-    )
+            # Plot chart
+            fig = px.line(
+                df,
+                x="Date",
+                y="Close",
+                title=f"{ticker.upper()} Stock Price"
+            )
 
-    st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, use_container_width=True)
 
     except Exception as e:
 
